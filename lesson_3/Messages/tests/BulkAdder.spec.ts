@@ -61,17 +61,18 @@ describe('BulkAdder and Counter', () => {
     });
 
     it('should increase to target', async () => {
+        const target = 5n;
         const res = await bulkAdder.send(deployer.getSender(), {
             value: toNano('0.2')
         }, {
             $$type: 'Reach',
             counter: messageContract.address,
-            target: 1n,
+            target: target,
         })
 
         const count = await messageContract.getCounter()
-        expect(count).toEqual(1n);
+        expect(count).toEqual(target);
 
-        console.log(res)
+        console.log("events amount - ", res.events.length)
     });
 });

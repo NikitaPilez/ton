@@ -14,11 +14,13 @@ contract MessageContract with Deployable {
         self.counter = 0;
     }
 
+    // step 4
     receive("increment") {
         self.counter = (self.counter + 1);
         self.reply(CounterValue{amount: self.counter}.toCell());
     }
 
+    // step 2
     receive("query") {
         self.reply(CounterValue{amount: self.counter}.toCell());
     }

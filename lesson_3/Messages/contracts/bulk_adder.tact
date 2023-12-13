@@ -28,6 +28,7 @@ contract BulkAdder with Deployable {
         });
     }
 
+    //step 3
     receive(msg: CounterValue) {
         if (self.target > msg.amount) {
             send(SendParameters{
