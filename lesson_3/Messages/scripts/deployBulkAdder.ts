@@ -1,11 +1,11 @@
 import { toNano } from '@ton/core';
-import { MessageContract } from '../wrappers/MessageContract';
+import { BulkAdder } from '../wrappers/BulkAdder';
 import { NetworkProvider } from '@ton/blueprint';
 
 export async function run(provider: NetworkProvider) {
-    const messageContract = provider.open(await MessageContract.fromInit(123n));
+    const bulkAdder = provider.open(await BulkAdder.fromInit());
 
-    await messageContract.send(
+    await bulkAdder.send(
         provider.sender(),
         {
             value: toNano('0.05'),
@@ -16,7 +16,7 @@ export async function run(provider: NetworkProvider) {
         }
     );
 
-    await provider.waitForDeploy(messageContract.address);
+    await provider.waitForDeploy(bulkAdder.address);
 
-    // run methods on `messageContract`
+    // run methods on `bulkAdder`
 }
