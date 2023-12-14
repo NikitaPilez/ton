@@ -77,7 +77,22 @@ describe('Company', () => {
 
         console.log("balanceCompany - ", balanceCompany)
 
-        // expect(balanceFund).toEqual(7n);
-        // expect(balanceCompany).toEqual(3n);
+        expect(balanceFund).toEqual(7n);
+        expect(balanceCompany).toEqual(3n);
+    })
+
+    it('receive deposit', async () => {
+        const res = await fund.send(deployer.getSender(), {
+            value: toNano('0.2')
+        }, {
+            $$type: 'Deposit',
+            amount: 3n,
+        })
+
+        const balance = await fund.getBalance()
+
+        console.log("balance fund - ", balance)
+
+        expect(balance).toEqual(13n)
     })
 });

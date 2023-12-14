@@ -2,7 +2,6 @@ import "@stdlib/deploy";
 
 message Deposit {
     amount: Int as uint32;
-    queryId: Int as uint32;
 }
 
 contract Company with Deployable {
